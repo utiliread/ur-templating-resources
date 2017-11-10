@@ -1,5 +1,5 @@
 {
-  "name": "ur-value-converters",
+  "name": "ur-templating-resources",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
