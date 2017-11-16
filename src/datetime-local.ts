@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 import { Moment, isMoment, utc } from 'moment';
 
 export type Resolution = 'second' | 'minute' | 'hour';
@@ -15,13 +17,13 @@ export class DatetimeLocalValueConverter {
         resolution = resolution || defaultResolution;
 
         if (isMoment(value) && value.isValid()) {
-            return value.format(formats[resolution]);
+            return moment(value).local().format(formats[resolution]);
         }
     }
 
     fromView(value: string, resolution: Resolution) {
         resolution = resolution || defaultResolution;
 
-        return utc(value, formats[resolution]);
+        return moment(value, formats[resolution]).utc();
     }
 }
