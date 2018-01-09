@@ -1,11 +1,7 @@
-var UpperValueConverter = /** @class */ (function () {
-    function UpperValueConverter() {
-    }
-    UpperValueConverter.prototype.toView = function (value) {
+export class UpperValueConverter {
+    toView(value) {
         if (value) {
             return value.toLocaleUpperCase();
         }
-    };
-    return UpperValueConverter;
-}());
-export { UpperValueConverter };
+    }
+}

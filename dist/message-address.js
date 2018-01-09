@@ -1,46 +1,41 @@
-var regex = new RegExp(/([^<]*)(<(.*)>)?/);
-var MessageAddressValueConverter = /** @class */ (function () {
-    function MessageAddressValueConverter() {
-    }
-    MessageAddressValueConverter.prototype.toView = function (addressOrAddresses, kind) {
-        var _this = this;
+const regex = new RegExp(/([^<]*)(<(.*)>)?/);
+export class MessageAddressValueConverter {
+    toView(addressOrAddresses, kind) {
         if (kind === undefined) {
             kind = false;
         }
         if (Array.isArray(addressOrAddresses)) {
-            var truncatedCount = 0;
+            let truncatedCount = 0;
             if (kind !== true && kind !== false) {
-                var max = kind;
+                let max = kind;
                 truncatedCount = addressOrAddresses.length - max;
                 if (truncatedCount > 0) {
                     addressOrAddresses = addressOrAddresses.slice(0, max);
                 }
             }
-            var formatted = addressOrAddresses.map(function (x) { return _this.format(x, kind); }).join(';');
+            let formatted = addressOrAddresses.map(x => this.format(x, kind)).join(';');
             if (truncatedCount > 0) {
-                formatted += " (+" + truncatedCount + ")";
+                formatted += ` (+${truncatedCount})`;
             }
             return formatted;
         }
         else {
             return this.format(addressOrAddresses, kind);
         }
-    };
-    MessageAddressValueConverter.prototype.fromView = function (addresses) {
+    }
+    fromView(addresses) {
         return addresses.split(';').map(this.unformat);
-    };
-    MessageAddressValueConverter.prototype.format = function (address, kind) {
+    }
+    format(address, kind) {
         if (kind === true) {
             return address;
         }
         else {
-            var match = regex.exec(address);
+            let match = regex.exec(address);
             return match[1].trim();
         }
-    };
-    MessageAddressValueConverter.prototype.unformat = function (address) {
+    }
+    unformat(address) {
         return address;
-    };
-    return MessageAddressValueConverter;
-}());
-export { MessageAddressValueConverter };
+    }
+}

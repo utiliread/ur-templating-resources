@@ -1,12 +1,8 @@
-var IntegerValueConverter = /** @class */ (function () {
-    function IntegerValueConverter() {
-    }
-    IntegerValueConverter.prototype.toView = function (n) {
+export class IntegerValueConverter {
+    toView(n) {
         return n != null ? n.toString() : '';
-    };
-    IntegerValueConverter.prototype.fromView = function (s) {
+    }
+    fromView(s) {
         return s != null ? parseInt(s) : null;
-    };
-    return IntegerValueConverter;
-}());
-export { IntegerValueConverter };
+    }
+}

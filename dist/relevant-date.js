@@ -1,11 +1,9 @@
 import * as moment from 'moment';
-var RelevantDateValueConverter = /** @class */ (function () {
-    function RelevantDateValueConverter() {
-    }
-    RelevantDateValueConverter.prototype.toView = function (value) {
+export class RelevantDateValueConverter {
+    toView(value) {
         if (value != null && value.isValid()) {
-            var localNow = moment();
-            var localValue = moment(value).local();
+            let localNow = moment();
+            let localValue = moment(value).local();
             // https://github.com/moment/moment/blob/master/src/lib/moment/calendar.js#L8
             if (Math.abs(localValue.diff(localNow, 'day', true)) < 6) {
                 return localValue.calendar(localNow);
@@ -20,7 +18,5 @@ var RelevantDateValueConverter = /** @class */ (function () {
             }
         }
         return null;
-    };
-    return RelevantDateValueConverter;
-}());
-export { RelevantDateValueConverter };
+    }
+}

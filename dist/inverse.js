@@ -1,12 +1,8 @@
-var InverseValueConverter = /** @class */ (function () {
-    function InverseValueConverter() {
+export class InverseValueConverter {
+    toView(value) {
+        return !value;
     }
-    InverseValueConverter.prototype.toView = function (value) {
+    fromView(value) {
         return !value;
-    };
-    InverseValueConverter.prototype.fromView = function (value) {
-        return !value;
-    };
-    return InverseValueConverter;
-}());
-export { InverseValueConverter };
+    }
+}

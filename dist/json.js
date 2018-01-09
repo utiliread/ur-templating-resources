@@ -1,12 +1,8 @@
-var JsonValueConverter = /** @class */ (function () {
-    function JsonValueConverter() {
-    }
-    JsonValueConverter.prototype.toView = function (value) {
+export class JsonValueConverter {
+    toView(value) {
         return JSON.stringify(value);
-    };
-    JsonValueConverter.prototype.fromView = function (value) {
+    }
+    fromView(value) {
         return JSON.parse(value);
-    };
-    return JsonValueConverter;
-}());
-export { JsonValueConverter };
+    }
+}
