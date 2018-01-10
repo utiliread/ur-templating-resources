@@ -1,11 +1,11 @@
-import { duration, isDuration } from 'moment';
+import { Duration } from 'luxon';
 export class DurationValueConverter {
     toView(value) {
-        if (isDuration(value)) {
-            return value.toISOString();
+        if (value instanceof Duration) {
+            return value.toISO();
         }
     }
     fromView(value) {
-        return duration(value);
+        return Duration.fromISO(value);
     }
 }

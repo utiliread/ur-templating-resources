@@ -1,4 +1,5 @@
-import { Moment } from 'moment';
+/// <reference types="luxon" />
+import { DateTime } from 'luxon';
 export declare class RelevantDateValueConverter {
-    toView(value: Moment): string;
+    toView(value: DateTime): string;
 }

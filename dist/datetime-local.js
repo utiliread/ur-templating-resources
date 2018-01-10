@@ -1,20 +1,21 @@
-import * as moment from 'moment';
-import { isMoment } from 'moment';
+import { DateTime } from 'luxon';
 const defaultResolution = 'second';
-const formats = {
-    'second': 'YYYY-MM-DDTHH:mm:ss',
-    'minute': 'YYYY-MM-DDTHH:mm',
-    'hour': 'YYYY-MM-DDTHH:00'
+const truncateLengths = {
+    'second': 'YYYY-MM-DDTHH:mm:ss'.length,
+    'minute': 'YYYY-MM-DDTHH:mm'.length,
+    'hour': 'YYYY-MM-DDTHH'.length
 };
 export class DatetimeLocalValueConverter {
     toView(value, resolution) {
         resolution = resolution || defaultResolution;
-        if (isMoment(value) && value.isValid()) {
-            return moment(value).local().format(formats[resolution]);
+        if (value instanceof DateTime && value.isValid) {
+            let truncateLength = truncateLengths[resolution];
+            let result = value.toLocal().toISO().substr(0, truncateLength);
+            return resolution === 'hour' ? result + ':00' : result;
         }
     }
     fromView(value, resolution) {
         resolution = resolution || defaultResolution;
-        return moment(value, formats[resolution]).utc();
+        return DateTime.fromISO(value).toUTC();
     }
 }

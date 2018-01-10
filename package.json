@@ -8,11 +8,12 @@
     "clean": "rimraf dist"
   },
   "devDependencies": {
+    "@types/luxon": "^0.2.2",
     "rimraf": "^2.6.2",
     "typescript": "^2.6.2"
   },
   "dependencies": {
     "aurelia-framework": "^1.1.5",
-    "moment": "^2.20.1"
+    "ur-humanize": "0.0.1"
   }
 }
