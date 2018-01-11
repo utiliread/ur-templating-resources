@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 
 export type Resolution = 'second' | 'minute' | 'hour';
 
-const defaultResolution = 'second';
+const defaultResolution = 'minute';
 
 const truncateLengths: {[resolution in Resolution]: number} = {
     'second': 'YYYY-MM-DDTHH:mm:ss'.length,
