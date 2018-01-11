@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-const defaultResolution = 'second';
+const defaultResolution = 'minute';
 const truncateLengths = {
     'second': 'YYYY-MM-DDTHH:mm:ss'.length,
     'minute': 'YYYY-MM-DDTHH:mm'.length,
