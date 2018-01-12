@@ -1,8 +1,6 @@
-import { DateTime } from 'luxon';
 import { relativeTime } from 'ur-humanize';
-
 export class RelativeTimeValueConverter {
-    toView(date: DateTime, base?: DateTime) {
+    toView(date, base) {
         return relativeTime(date, base);
     }
 }

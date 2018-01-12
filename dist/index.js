@@ -1,6 +1,5 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
-
-export function configure(config: FrameworkConfiguration) {
+import { PLATFORM } from 'aurelia-framework';
+export function configure(config) {
     config.globalResources([
         PLATFORM.moduleName('./datetime-local'),
         PLATFORM.moduleName('./exact-time'),

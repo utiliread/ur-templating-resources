@@ -1,8 +1,6 @@
-import { DateTime } from 'luxon';
 import { timeAgo } from 'ur-humanize';
-
 export class TimeAgoValueConverter {
-    toView(date: DateTime, base?: DateTime) {
+    toView(date, base) {
         return timeAgo(date, base);
     }
 }
