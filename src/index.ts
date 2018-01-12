@@ -11,7 +11,7 @@ export function configure(config: FrameworkConfiguration) {
         PLATFORM.moduleName('./lower'),
         PLATFORM.moduleName('./message-address'),
         PLATFORM.moduleName('./local-date'),
-        PLATFORM.moduleName('./local-datetime'),
+        PLATFORM.moduleName('./local-date-time'),
         PLATFORM.moduleName('./local-format'),
         PLATFORM.moduleName('./local-time'),
         PLATFORM.moduleName('./relative'),
