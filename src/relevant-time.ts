@@ -1,10 +1,10 @@
 import { DateTime } from 'luxon';
-import { Humanize } from 'ur-humanize';
+import { relevantTime } from 'ur-humanize';
 
-export class HumanizeValueConverter {
+export class RelevantTimeValueConverter {
     toView(value: DateTime) {
         if (value instanceof DateTime && value.isValid) {
-            return Humanize.default(value);
+            return relevantTime(value);
         }
     }
 }
