@@ -14,7 +14,7 @@ export class DatetimeLocalValueConverter {
     toView(value: any, resolution: Resolution) {
         resolution = resolution || defaultResolution;
 
-        if (value instanceof DateTime && value.isValid) {
+        if (value && value.isValid) {
             let truncateLength = truncateLengths[resolution];
 
             let result = value.toLocal().toISO().substr(0, truncateLength);

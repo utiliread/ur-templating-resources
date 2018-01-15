@@ -4,8 +4,10 @@ const map = {
     med: DateTime.DATETIME_MED
 };
 export class LocalDateTimeValueConverter {
-    toView(dateTime, kind) {
-        let format = map[kind || 'med'];
-        return dateTime.toLocal().toLocaleString(format);
+    toView(value, kind) {
+        if (value && value.isValid) {
+            let format = map[kind || 'med'];
+            return value.toLocal().toLocaleString(format);
+        }
     }
 }

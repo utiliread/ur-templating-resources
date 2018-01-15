@@ -1,5 +1,7 @@
 export class LocalFormatValueConverter {
-    toView(dateTime, format) {
-        return dateTime.toLocal().toFormat(format);
+    toView(value, format) {
+        if (value && value.isValid) {
+            return value.toLocal().toFormat(format);
+        }
     }
 }

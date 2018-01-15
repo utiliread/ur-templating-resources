@@ -1,7 +1,9 @@
 import { DateTime } from 'luxon';
 
 export class LocalFormatValueConverter {
-    toView(dateTime: DateTime, format: string) {
-        return dateTime.toLocal().toFormat(format);
+    toView(value: DateTime, format: string) {
+        if (value && value.isValid) {
+            return value.toLocal().toFormat(format);
+        }
     }
 }

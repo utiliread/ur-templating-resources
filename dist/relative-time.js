@@ -1,6 +1,8 @@
 import { relativeTime } from 'ur-humanize';
 export class RelativeTimeValueConverter {
-    toView(date, base) {
-        return relativeTime(date, base);
+    toView(value, base) {
+        if (value && value.isValid && (!base || base.isValid)) {
+            return relativeTime(value, base);
+        }
     }
 }

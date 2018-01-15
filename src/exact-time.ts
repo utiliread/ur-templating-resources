@@ -3,7 +3,7 @@ import { exactTime } from 'ur-humanize';
 
 export class ExactTimeValueConverter {
     toView(value: DateTime) {
-        if (value instanceof DateTime && value.isValid) {
+        if (value && value.isValid) {
             return exactTime(value);
         }
     }

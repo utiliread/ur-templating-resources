@@ -1,6 +1,8 @@
 import { timeAgo } from 'ur-humanize';
 export class TimeAgoValueConverter {
-    toView(date, base) {
-        return timeAgo(date, base);
+    toView(value, base) {
+        if (value && value.isValid && (!base || base.isValid)) {
+            return timeAgo(value, base);
+        }
     }
 }

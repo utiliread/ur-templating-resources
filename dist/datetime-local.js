@@ -8,7 +8,7 @@ const truncateLengths = {
 export class DatetimeLocalValueConverter {
     toView(value, resolution) {
         resolution = resolution || defaultResolution;
-        if (value instanceof DateTime && value.isValid) {
+        if (value && value.isValid) {
             let truncateLength = truncateLengths[resolution];
             let result = value.toLocal().toISO().substr(0, truncateLength);
             return resolution === 'hour' ? result + ':00' : result;

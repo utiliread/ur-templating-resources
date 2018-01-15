@@ -8,8 +8,10 @@ const map: {[kind in Kind]: Intl.DateTimeFormatOptions} = {
 };
 
 export class LocalDateValueConverter {
-    toView(date: DateTime, kind?: Kind) {
-        let format = map[kind || 'med'];
-        return date.toLocal().toLocaleString(format);
+    toView(value: DateTime, kind?: Kind) {
+        if (value && value.isValid) {
+            let format = map[kind || 'med'];
+            return value.toLocal().toLocaleString(format);
+        }
     }
 }

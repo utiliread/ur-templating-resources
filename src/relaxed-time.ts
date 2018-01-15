@@ -3,7 +3,7 @@ import { relaxedTime } from 'ur-humanize';
 
 export class RelaxedTimeValueConverter {
     toView(value: DateTime) {
-        if (value instanceof DateTime && value.isValid) {
+        if (value && value.isValid) {
             return relaxedTime(value);
         }
     }
