@@ -1,10 +1,10 @@
 import { DateTime } from 'luxon';
-import { relativeTime } from 'ur-humanize';
+import { casualRelativeTime } from 'ur-humanize';
 
-export class RelativeTimeValueConverter {
+export class CasualRelativeTimeValueConverter {
     toView(value: DateTime, base?: DateTime) {
         if (value && value.isValid && (!base || base.isValid)) {
-            return relativeTime(value, base);
+            return casualRelativeTime(value, base);
         }
     }
 }

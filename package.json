@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "aurelia-framework": "^1.1.5",
-    "ur-humanize": "^0.0.17"
+    "ur-humanize": "^1.0.0"
   }
 }
