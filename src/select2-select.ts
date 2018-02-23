@@ -9,7 +9,7 @@ export class Select2SelectCustomElement {
     private bindingContext: any;
 
     @bindable()
-    name: string;
+    name?: string;
     @bindable({ defaultBindingMode: bindingMode.twoWay })
     selected: string[] = [];
     @bindable()
@@ -20,9 +20,9 @@ export class Select2SelectCustomElement {
     placeholder = '';
 
     @bindable()
-    query: (q: string) => Promise<{ id: string; text: string }[] | { id: string; text: string }[]>;
+    query?: (q: string) => Promise<{ id: string; text: string }[] | { id: string; text: string }[]>;
 
-    element: HTMLSelectElement;
+    element!: HTMLSelectElement;
 
     bind(bindingContext: any) {
         this.bindingContext = bindingContext;
@@ -34,11 +34,17 @@ export class Select2SelectCustomElement {
         };
 
         if (this.query) {
+            const query = this.query;
+            
             options.ajax = {
                 transport: (settings, success, failure) => {
                     let data: any = settings.data;
 
-                    let returnValue = this.query.call(this.bindingContext, data.q, data.page || 1);
+                    if (!success || !failure) {
+                        throw Error();
+                    }
+
+                    let returnValue = query.call(this.bindingContext, data.q, data.page || 1);
     
                     Promise.resolve(returnValue)
                         .then((result: LookupObjectResult | Select2Item[]) => {

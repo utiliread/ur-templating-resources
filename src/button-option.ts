@@ -8,7 +8,7 @@ export class ButtonOptionCustomElement {
     value: any;
 
     @bindable()
-    btnClass: string;
+    btnClass?: string;
 
     @computedFrom('value', 'parent.value')
     get isActive() {
