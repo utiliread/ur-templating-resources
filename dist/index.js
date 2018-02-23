@@ -1,20 +1,23 @@
 import { PLATFORM } from 'aurelia-framework';
 export function configure(config) {
     config.globalResources([
-        PLATFORM.moduleName('./casual-relative-time'),
-        PLATFORM.moduleName('./casual-time-ago'),
-        PLATFORM.moduleName('./casual-time'),
-        PLATFORM.moduleName('./datetime-local'),
-        PLATFORM.moduleName('./exact-time'),
-        PLATFORM.moduleName('./hex'),
-        PLATFORM.moduleName('./inverse'),
-        PLATFORM.moduleName('./json'),
-        PLATFORM.moduleName('./local-date-time'),
-        PLATFORM.moduleName('./local-date'),
-        PLATFORM.moduleName('./local-format'),
-        PLATFORM.moduleName('./local-time'),
-        PLATFORM.moduleName('./lower'),
-        PLATFORM.moduleName('./message-address'),
-        PLATFORM.moduleName('./upper')
+        PLATFORM.moduleName('./value-converters/casual-relative-time'),
+        PLATFORM.moduleName('./value-converters/casual-time-ago'),
+        PLATFORM.moduleName('./value-converters/casual-time'),
+        PLATFORM.moduleName('./value-converters/datetime-local'),
+        PLATFORM.moduleName('./value-converters/exact-time'),
+        PLATFORM.moduleName('./value-converters/hex'),
+        PLATFORM.moduleName('./value-converters/inverse'),
+        PLATFORM.moduleName('./value-converters/json'),
+        PLATFORM.moduleName('./value-converters/local-date-time'),
+        PLATFORM.moduleName('./value-converters/local-date'),
+        PLATFORM.moduleName('./value-converters/local-format'),
+        PLATFORM.moduleName('./value-converters/local-time'),
+        PLATFORM.moduleName('./value-converters/lower'),
+        PLATFORM.moduleName('./value-converters/message-address'),
+        PLATFORM.moduleName('./value-converters/upper'),
+        PLATFORM.moduleName('./button-option'),
+        PLATFORM.moduleName('./button-select'),
+        PLATFORM.moduleName('./select2-select')
     ]);
 }

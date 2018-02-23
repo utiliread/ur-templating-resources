@@ -1,0 +1,5 @@
+<template>
+    <select ref="element" class="form-control" name.bind="name" value.two-way="selected" data-placeholder.one-way="placeholder">
+        <option repeat.for="item of items" value.bind="item.id">${item.text}</option>
+    </select>
+</template>

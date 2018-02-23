@@ -4,16 +4,24 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && copyfiles -u 1 src/**/*.{css,html} dist",
     "clean": "rimraf dist"
   },
   "devDependencies": {
-    "@types/luxon": "^0.2.2",
+    "@types/luxon": "^0.2.5",
+    "@types/select2": "^4.0.41",
+    "luxon": "^0.5.3",
+    "aurelia-framework": "^1.1.5",
+    "copyfiles": "^1.2.0",
     "rimraf": "^2.6.2",
-    "typescript": "^2.6.2"
+    "typescript": "^2.7.2"
+  },
+  "peerDependencies": {
+    "aurelia-framework": "^1.1.5",
+    "luxon": "^0.5.3"
   },
   "dependencies": {
-    "aurelia-framework": "^1.1.5",
+    "select2": "^4.0.6-rc.1",
     "ur-humanize": "^1.0.0"
   }
 }

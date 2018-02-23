@@ -6,6 +6,7 @@
         "declaration": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "allowSyntheticDefaultImports": true,
         "strict": true,
         "strictNullChecks": false,
         "baseUrl": "src",
