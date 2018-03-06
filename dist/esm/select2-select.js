@@ -10,31 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import 'select2';
 import { bindable, bindingMode } from 'aurelia-framework';
 import $ from 'jquery';
-export class Select2SelectCustomElement {
-    constructor() {
+var Select2SelectCustomElement = /** @class */ (function () {
+    function Select2SelectCustomElement() {
         this.selected = [];
         this.items = [];
         this.minimumInputLength = 0;
         this.placeholder = '';
     }
-    bind(bindingContext) {
+    Select2SelectCustomElement.prototype.bind = function (bindingContext) {
         this.bindingContext = bindingContext;
-    }
-    attached() {
-        let options = {
+    };
+    Select2SelectCustomElement.prototype.attached = function () {
+        var _this = this;
+        var options = {
             minimumInputLength: parseInt(this.minimumInputLength.toString())
         };
         if (this.query) {
-            const query = this.query;
+            var query_1 = this.query;
             options.ajax = {
-                transport: (settings, success, failure) => {
-                    let data = settings.data;
+                transport: function (settings, success, failure) {
+                    var data = settings.data;
                     if (!success || !failure) {
                         throw Error();
                     }
-                    let returnValue = query.call(this.bindingContext, data.q, data.page || 1);
+                    var returnValue = query_1.call(_this.bindingContext, data.q, data.page || 1);
                     Promise.resolve(returnValue)
-                        .then((result) => {
+                        .then(function (result) {
                         if (Array.isArray(result)) {
                             success({
                                 results: result
@@ -54,7 +55,7 @@ export class Select2SelectCustomElement {
                             });
                         }
                     })
-                        .catch(() => {
+                        .catch(function () {
                         failure();
                     });
                     return undefined;
@@ -66,47 +67,49 @@ export class Select2SelectCustomElement {
         $(this.element)
             .select2(options)
             .val(this.selected).trigger('change')
-            .on('change', event => {
+            .on('change', function (event) {
             // Don't propagate endlessly
             if (event.originalEvent) {
                 return;
             }
             // Dispatch to raw select within the custom element.
-            let notice = new Event('change', {
+            var notice = new Event('change', {
                 bubbles: false
             });
-            this.element.dispatchEvent(notice);
+            _this.element.dispatchEvent(notice);
         });
-    }
-    detached() {
+    };
+    Select2SelectCustomElement.prototype.detached = function () {
         $(this.element).select2('destroy');
-    }
-    selectedChanged() {
+    };
+    Select2SelectCustomElement.prototype.selectedChanged = function () {
         $(this.element).val(this.selected).trigger('change');
-    }
-}
-__decorate([
-    bindable(),
-    __metadata("design:type", String)
-], Select2SelectCustomElement.prototype, "name", void 0);
-__decorate([
-    bindable({ defaultBindingMode: bindingMode.twoWay }),
-    __metadata("design:type", Array)
-], Select2SelectCustomElement.prototype, "selected", void 0);
-__decorate([
-    bindable(),
-    __metadata("design:type", Array)
-], Select2SelectCustomElement.prototype, "items", void 0);
-__decorate([
-    bindable(),
-    __metadata("design:type", Object)
-], Select2SelectCustomElement.prototype, "minimumInputLength", void 0);
-__decorate([
-    bindable(),
-    __metadata("design:type", Object)
-], Select2SelectCustomElement.prototype, "placeholder", void 0);
-__decorate([
-    bindable(),
-    __metadata("design:type", Function)
-], Select2SelectCustomElement.prototype, "query", void 0);
+    };
+    __decorate([
+        bindable(),
+        __metadata("design:type", String)
+    ], Select2SelectCustomElement.prototype, "name", void 0);
+    __decorate([
+        bindable({ defaultBindingMode: bindingMode.twoWay }),
+        __metadata("design:type", Array)
+    ], Select2SelectCustomElement.prototype, "selected", void 0);
+    __decorate([
+        bindable(),
+        __metadata("design:type", Array)
+    ], Select2SelectCustomElement.prototype, "items", void 0);
+    __decorate([
+        bindable(),
+        __metadata("design:type", Object)
+    ], Select2SelectCustomElement.prototype, "minimumInputLength", void 0);
+    __decorate([
+        bindable(),
+        __metadata("design:type", Object)
+    ], Select2SelectCustomElement.prototype, "placeholder", void 0);
+    __decorate([
+        bindable(),
+        __metadata("design:type", Function)
+    ], Select2SelectCustomElement.prototype, "query", void 0);
+    return Select2SelectCustomElement;
+}());
+export { Select2SelectCustomElement };
 //# sourceMappingURL=select2-select.js.map

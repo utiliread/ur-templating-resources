@@ -9,35 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const aurelia_framework_1 = require("aurelia-framework");
-const button_select_1 = require("./button-select");
-let ButtonOptionCustomElement = class ButtonOptionCustomElement {
-    constructor(parent) {
+var aurelia_framework_1 = require("aurelia-framework");
+var button_select_1 = require("./button-select");
+var ButtonOptionCustomElement = /** @class */ (function () {
+    function ButtonOptionCustomElement(parent) {
         this.parent = parent;
     }
-    get isActive() {
-        return this.value === this.parent.value;
-    }
-    select() {
+    Object.defineProperty(ButtonOptionCustomElement.prototype, "isActive", {
+        get: function () {
+            return this.value === this.parent.value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ButtonOptionCustomElement.prototype.select = function () {
         this.parent.value = this.value;
-    }
-};
-__decorate([
-    aurelia_framework_1.bindable(),
-    __metadata("design:type", Object)
-], ButtonOptionCustomElement.prototype, "value", void 0);
-__decorate([
-    aurelia_framework_1.bindable(),
-    __metadata("design:type", String)
-], ButtonOptionCustomElement.prototype, "btnClass", void 0);
-__decorate([
-    aurelia_framework_1.computedFrom('value', 'parent.value'),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], ButtonOptionCustomElement.prototype, "isActive", null);
-ButtonOptionCustomElement = __decorate([
-    aurelia_framework_1.autoinject(),
-    __metadata("design:paramtypes", [button_select_1.ButtonSelectCustomElement])
-], ButtonOptionCustomElement);
+    };
+    __decorate([
+        aurelia_framework_1.bindable(),
+        __metadata("design:type", Object)
+    ], ButtonOptionCustomElement.prototype, "value", void 0);
+    __decorate([
+        aurelia_framework_1.bindable(),
+        __metadata("design:type", String)
+    ], ButtonOptionCustomElement.prototype, "btnClass", void 0);
+    __decorate([
+        aurelia_framework_1.computedFrom('value', 'parent.value'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], ButtonOptionCustomElement.prototype, "isActive", null);
+    ButtonOptionCustomElement = __decorate([
+        aurelia_framework_1.autoinject(),
+        __metadata("design:paramtypes", [button_select_1.ButtonSelectCustomElement])
+    ], ButtonOptionCustomElement);
+    return ButtonOptionCustomElement;
+}());
 exports.ButtonOptionCustomElement = ButtonOptionCustomElement;
 //# sourceMappingURL=button-option.js.map

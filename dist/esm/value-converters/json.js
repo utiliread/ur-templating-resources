@@ -1,9 +1,13 @@
-export class JsonValueConverter {
-    toView(value) {
+var JsonValueConverter = /** @class */ (function () {
+    function JsonValueConverter() {
+    }
+    JsonValueConverter.prototype.toView = function (value) {
         return JSON.stringify(value);
-    }
-    fromView(value) {
+    };
+    JsonValueConverter.prototype.fromView = function (value) {
         return JSON.parse(value);
-    }
-}
+    };
+    return JsonValueConverter;
+}());
+export { JsonValueConverter };
 //# sourceMappingURL=json.js.map

@@ -1,42 +1,47 @@
-const regex = new RegExp(/([^<]*)(<(.*)>)?/);
-export class MessageAddressValueConverter {
-    toView(addressOrAddresses, kind) {
+var regex = new RegExp(/([^<]*)(<(.*)>)?/);
+var MessageAddressValueConverter = /** @class */ (function () {
+    function MessageAddressValueConverter() {
+    }
+    MessageAddressValueConverter.prototype.toView = function (addressOrAddresses, kind) {
+        var _this = this;
         if (kind === undefined) {
             kind = false;
         }
         if (Array.isArray(addressOrAddresses)) {
-            let truncatedCount = 0;
+            var truncatedCount = 0;
             if (kind !== true && kind !== false) {
-                let max = kind;
+                var max = kind;
                 truncatedCount = addressOrAddresses.length - max;
                 if (truncatedCount > 0) {
                     addressOrAddresses = addressOrAddresses.slice(0, max);
                 }
             }
-            let formatted = addressOrAddresses.map(x => this.format(x, kind)).join(';');
+            var formatted = addressOrAddresses.map(function (x) { return _this.format(x, kind); }).join(';');
             if (truncatedCount > 0) {
-                formatted += ` (+${truncatedCount})`;
+                formatted += " (+" + truncatedCount + ")";
             }
             return formatted;
         }
         else {
             return this.format(addressOrAddresses, kind);
         }
-    }
-    fromView(addresses) {
+    };
+    MessageAddressValueConverter.prototype.fromView = function (addresses) {
         return addresses.split(';').map(this.unformat);
-    }
-    format(address, kind) {
+    };
+    MessageAddressValueConverter.prototype.format = function (address, kind) {
         if (kind === true) {
             return address;
         }
         else {
-            let match = regex.exec(address);
+            var match = regex.exec(address);
             return match[1].trim();
         }
-    }
-    unformat(address) {
+    };
+    MessageAddressValueConverter.prototype.unformat = function (address) {
         return address;
-    }
-}
+    };
+    return MessageAddressValueConverter;
+}());
+export { MessageAddressValueConverter };
 //# sourceMappingURL=message-address.js.map

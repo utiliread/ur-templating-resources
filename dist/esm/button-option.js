@@ -9,33 +9,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { autoinject, bindable, computedFrom } from 'aurelia-framework';
 import { ButtonSelectCustomElement } from './button-select';
-let ButtonOptionCustomElement = class ButtonOptionCustomElement {
-    constructor(parent) {
+var ButtonOptionCustomElement = /** @class */ (function () {
+    function ButtonOptionCustomElement(parent) {
         this.parent = parent;
     }
-    get isActive() {
-        return this.value === this.parent.value;
-    }
-    select() {
+    Object.defineProperty(ButtonOptionCustomElement.prototype, "isActive", {
+        get: function () {
+            return this.value === this.parent.value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ButtonOptionCustomElement.prototype.select = function () {
         this.parent.value = this.value;
-    }
-};
-__decorate([
-    bindable(),
-    __metadata("design:type", Object)
-], ButtonOptionCustomElement.prototype, "value", void 0);
-__decorate([
-    bindable(),
-    __metadata("design:type", String)
-], ButtonOptionCustomElement.prototype, "btnClass", void 0);
-__decorate([
-    computedFrom('value', 'parent.value'),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], ButtonOptionCustomElement.prototype, "isActive", null);
-ButtonOptionCustomElement = __decorate([
-    autoinject(),
-    __metadata("design:paramtypes", [ButtonSelectCustomElement])
-], ButtonOptionCustomElement);
+    };
+    __decorate([
+        bindable(),
+        __metadata("design:type", Object)
+    ], ButtonOptionCustomElement.prototype, "value", void 0);
+    __decorate([
+        bindable(),
+        __metadata("design:type", String)
+    ], ButtonOptionCustomElement.prototype, "btnClass", void 0);
+    __decorate([
+        computedFrom('value', 'parent.value'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], ButtonOptionCustomElement.prototype, "isActive", null);
+    ButtonOptionCustomElement = __decorate([
+        autoinject(),
+        __metadata("design:paramtypes", [ButtonSelectCustomElement])
+    ], ButtonOptionCustomElement);
+    return ButtonOptionCustomElement;
+}());
 export { ButtonOptionCustomElement };
 //# sourceMappingURL=button-option.js.map

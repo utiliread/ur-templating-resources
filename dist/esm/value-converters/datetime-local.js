@@ -1,22 +1,26 @@
 import { DateTime } from 'luxon';
-const defaultResolution = 'minute';
-const truncateLengths = {
+var defaultResolution = 'minute';
+var truncateLengths = {
     'second': 'YYYY-MM-DDTHH:mm:ss'.length,
     'minute': 'YYYY-MM-DDTHH:mm'.length,
     'hour': 'YYYY-MM-DDTHH'.length
 };
-export class DatetimeLocalValueConverter {
-    toView(value, resolution) {
+var DatetimeLocalValueConverter = /** @class */ (function () {
+    function DatetimeLocalValueConverter() {
+    }
+    DatetimeLocalValueConverter.prototype.toView = function (value, resolution) {
         resolution = resolution || defaultResolution;
         if (value && value.isValid) {
-            let truncateLength = truncateLengths[resolution];
-            let result = value.toLocal().toISO().substr(0, truncateLength);
+            var truncateLength = truncateLengths[resolution];
+            var result = value.toLocal().toISO().substr(0, truncateLength);
             return resolution === 'hour' ? result + ':00' : result;
         }
-    }
-    fromView(value, resolution) {
+    };
+    DatetimeLocalValueConverter.prototype.fromView = function (value, resolution) {
         resolution = resolution || defaultResolution;
         return DateTime.fromISO(value).toUTC();
-    }
-}
+    };
+    return DatetimeLocalValueConverter;
+}());
+export { DatetimeLocalValueConverter };
 //# sourceMappingURL=datetime-local.js.map

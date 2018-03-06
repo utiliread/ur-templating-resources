@@ -1,9 +1,13 @@
 import { exactTime } from 'ur-humanize';
-export class ExactTimeValueConverter {
-    toView(value) {
+var ExactTimeValueConverter = /** @class */ (function () {
+    function ExactTimeValueConverter() {
+    }
+    ExactTimeValueConverter.prototype.toView = function (value) {
         if (value && value.isValid) {
             return exactTime(value);
         }
-    }
-}
+    };
+    return ExactTimeValueConverter;
+}());
+export { ExactTimeValueConverter };
 //# sourceMappingURL=exact-time.js.map

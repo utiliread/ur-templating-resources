@@ -9,12 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const aurelia_framework_1 = require("aurelia-framework");
-class ButtonSelectCustomElement {
-}
-__decorate([
-    aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
-    __metadata("design:type", Object)
-], ButtonSelectCustomElement.prototype, "value", void 0);
+var aurelia_framework_1 = require("aurelia-framework");
+var ButtonSelectCustomElement = /** @class */ (function () {
+    function ButtonSelectCustomElement() {
+    }
+    __decorate([
+        aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
+        __metadata("design:type", Object)
+    ], ButtonSelectCustomElement.prototype, "value", void 0);
+    return ButtonSelectCustomElement;
+}());
 exports.ButtonSelectCustomElement = ButtonSelectCustomElement;
 //# sourceMappingURL=button-select.js.map

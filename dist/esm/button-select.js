@@ -8,10 +8,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { bindable, bindingMode } from 'aurelia-framework';
-export class ButtonSelectCustomElement {
-}
-__decorate([
-    bindable({ defaultBindingMode: bindingMode.twoWay }),
-    __metadata("design:type", Object)
-], ButtonSelectCustomElement.prototype, "value", void 0);
+var ButtonSelectCustomElement = /** @class */ (function () {
+    function ButtonSelectCustomElement() {
+    }
+    __decorate([
+        bindable({ defaultBindingMode: bindingMode.twoWay }),
+        __metadata("design:type", Object)
+    ], ButtonSelectCustomElement.prototype, "value", void 0);
+    return ButtonSelectCustomElement;
+}());
+export { ButtonSelectCustomElement };
 //# sourceMappingURL=button-select.js.map

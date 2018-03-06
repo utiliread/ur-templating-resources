@@ -1,14 +1,18 @@
 import { DateTime } from 'luxon';
-const map = {
+var map = {
     short: DateTime.DATE_SHORT,
     med: DateTime.DATE_MED
 };
-export class LocalDateValueConverter {
-    toView(value, kind) {
+var LocalDateValueConverter = /** @class */ (function () {
+    function LocalDateValueConverter() {
+    }
+    LocalDateValueConverter.prototype.toView = function (value, kind) {
         if (value && value.isValid) {
-            let format = map[kind || 'med'];
+            var format = map[kind || 'med'];
             return value.toLocal().toLocaleString(format);
         }
-    }
-}
+    };
+    return LocalDateValueConverter;
+}());
+export { LocalDateValueConverter };
 //# sourceMappingURL=local-date.js.map
