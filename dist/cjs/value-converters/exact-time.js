@@ -4,9 +4,9 @@ var ur_humanize_1 = require("ur-humanize");
 var ExactTimeValueConverter = /** @class */ (function () {
     function ExactTimeValueConverter() {
     }
-    ExactTimeValueConverter.prototype.toView = function (value) {
+    ExactTimeValueConverter.prototype.toView = function (value, includeSeconds) {
         if (value && value.isValid) {
-            return ur_humanize_1.exactTime(value);
+            return ur_humanize_1.exactTime(value, includeSeconds);
         }
     };
     return ExactTimeValueConverter;
