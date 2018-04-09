@@ -3,7 +3,12 @@ var LocalFormatValueConverter = /** @class */ (function () {
     }
     LocalFormatValueConverter.prototype.toView = function (value, format) {
         if (value && value.isValid) {
-            return value.toLocal().toFormat(format);
+            if (typeof format === "string") {
+                return value.toLocal().toFormat(format);
+            }
+            else {
+                return value.toLocal().toLocaleString(format);
+            }
         }
     };
     return LocalFormatValueConverter;
