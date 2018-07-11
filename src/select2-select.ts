@@ -1,11 +1,12 @@
 import 'select2';
 
-import { bindable, bindingMode } from 'aurelia-framework';
+import { autoinject, bindable, bindingMode } from 'aurelia-framework';
 
 import $ from 'jquery';
 import { Options } from 'select2';
 import { Select2Item } from './select2-item';
 
+@autoinject()
 export class Select2SelectCustomElement {
     private bindingContext: any;
 

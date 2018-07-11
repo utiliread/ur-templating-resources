@@ -122,6 +122,10 @@ var Select2SelectCustomElement = /** @class */ (function () {
         aurelia_framework_1.bindable(),
         __metadata("design:type", Function)
     ], Select2SelectCustomElement.prototype, "query", void 0);
+    Select2SelectCustomElement = __decorate([
+        aurelia_framework_1.autoinject(),
+        __metadata("design:paramtypes", [Element])
+    ], Select2SelectCustomElement);
     return Select2SelectCustomElement;
 }());
 exports.Select2SelectCustomElement = Select2SelectCustomElement;

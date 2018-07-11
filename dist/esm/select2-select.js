@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import 'select2';
-import { bindable, bindingMode } from 'aurelia-framework';
+import { autoinject, bindable, bindingMode } from 'aurelia-framework';
 import $ from 'jquery';
 var Select2SelectCustomElement = /** @class */ (function () {
     function Select2SelectCustomElement(element) {
@@ -120,6 +120,10 @@ var Select2SelectCustomElement = /** @class */ (function () {
         bindable(),
         __metadata("design:type", Function)
     ], Select2SelectCustomElement.prototype, "query", void 0);
+    Select2SelectCustomElement = __decorate([
+        autoinject(),
+        __metadata("design:paramtypes", [Element])
+    ], Select2SelectCustomElement);
     return Select2SelectCustomElement;
 }());
 export { Select2SelectCustomElement };
