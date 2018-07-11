@@ -25,7 +25,7 @@ export class Select2SelectCustomElement {
     @bindable()
     query?: (q: string) => Promise<{ id: string; text: string }[] | { id: string; text: string }[]>;
 
-    select2element!: HTMLSelectElement;
+    selectElement!: HTMLSelectElement;
 
     constructor(private element: Element) {
     }
@@ -84,7 +84,7 @@ export class Select2SelectCustomElement {
             };
         }
 
-        $(this.select2element)
+        $(this.selectElement)
             .select2(options)
             .val(this.selected).trigger('change')
             .on('change', event => {
@@ -97,24 +97,24 @@ export class Select2SelectCustomElement {
                 let notice = new Event('change', {
                     bubbles: false
                 });
-                this.select2element.dispatchEvent(notice);
+                this.selectElement.dispatchEvent(notice);
             });
         
         if (this.element.attributes.getNamedItem('autofocus')) {
-            $(this.select2element).select2('open');
+            $(this.selectElement).select2('open');
         }
     }
 
     detached() {
-        $(this.select2element).select2('destroy');
+        $(this.selectElement).select2('destroy');
     }
 
     selectedChanged() {
-        $(this.select2element).val(this.selected).trigger('change');
+        $(this.selectElement).val(this.selected).trigger('change');
     }
 
     disabledChanged() {
-        $(this.select2element).prop("disabled", this.disabled);
+        $(this.selectElement).prop("disabled", this.disabled);
     }
 }
 

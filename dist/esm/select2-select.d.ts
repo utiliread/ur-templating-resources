@@ -16,7 +16,7 @@ export declare class Select2SelectCustomElement {
         id: string;
         text: string;
     }[]>;
-    select2element: HTMLSelectElement;
+    selectElement: HTMLSelectElement;
     constructor(element: Element);
     bind(bindingContext: any): void;
     attached(): void;

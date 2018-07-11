@@ -65,7 +65,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
                 cache: true
             };
         }
-        $(this.select2element)
+        $(this.selectElement)
             .select2(options)
             .val(this.selected).trigger('change')
             .on('change', function (event) {
@@ -77,20 +77,20 @@ var Select2SelectCustomElement = /** @class */ (function () {
             var notice = new Event('change', {
                 bubbles: false
             });
-            _this.select2element.dispatchEvent(notice);
+            _this.selectElement.dispatchEvent(notice);
         });
         if (this.element.attributes.getNamedItem('autofocus')) {
-            $(this.select2element).select2('open');
+            $(this.selectElement).select2('open');
         }
     };
     Select2SelectCustomElement.prototype.detached = function () {
-        $(this.select2element).select2('destroy');
+        $(this.selectElement).select2('destroy');
     };
     Select2SelectCustomElement.prototype.selectedChanged = function () {
-        $(this.select2element).val(this.selected).trigger('change');
+        $(this.selectElement).val(this.selected).trigger('change');
     };
     Select2SelectCustomElement.prototype.disabledChanged = function () {
-        $(this.select2element).prop("disabled", this.disabled);
+        $(this.selectElement).prop("disabled", this.disabled);
     };
     __decorate([
         bindable(),
