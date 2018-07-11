@@ -85,6 +85,9 @@ var Select2SelectCustomElement = /** @class */ (function () {
     Select2SelectCustomElement.prototype.selectedChanged = function () {
         $(this.element).val(this.selected).trigger('change');
     };
+    Select2SelectCustomElement.prototype.disabledChanged = function () {
+        $(this.element).prop("disabled", this.disabled);
+    };
     __decorate([
         bindable(),
         __metadata("design:type", String)
@@ -105,6 +108,10 @@ var Select2SelectCustomElement = /** @class */ (function () {
         bindable(),
         __metadata("design:type", Object)
     ], Select2SelectCustomElement.prototype, "placeholder", void 0);
+    __decorate([
+        bindable(),
+        __metadata("design:type", Boolean)
+    ], Select2SelectCustomElement.prototype, "disabled", void 0);
     __decorate([
         bindable(),
         __metadata("design:type", Function)

@@ -1,4 +1,3 @@
-/// <reference types="luxon" />
 import { DateTime } from 'luxon';
 export declare type Resolution = 'second' | 'minute' | 'hour';
 export declare class DatetimeLocalValueConverter {

@@ -3,6 +3,7 @@ import 'select2';
 import { bindable, bindingMode } from 'aurelia-framework';
 
 import $ from 'jquery';
+import { Options } from 'select2';
 import { Select2Item } from './select2-item';
 
 export class Select2SelectCustomElement {
@@ -18,6 +19,8 @@ export class Select2SelectCustomElement {
     minimumInputLength: string | number = 0;
     @bindable()
     placeholder = '';
+    @bindable()
+    disabled: boolean;
 
     @bindable()
     query?: (q: string) => Promise<{ id: string; text: string }[] | { id: string; text: string }[]>;
@@ -29,7 +32,7 @@ export class Select2SelectCustomElement {
     }
 
     attached() {
-        let options: Select2Options = {
+        let options: Options<any, any> = {
             minimumInputLength: parseInt(this.minimumInputLength.toString())
         };
 
@@ -38,13 +41,13 @@ export class Select2SelectCustomElement {
             
             options.ajax = {
                 transport: (settings, success, failure) => {
-                    let data: any = settings.data;
+                    const data: any = settings.data;
 
                     if (!success || !failure) {
                         throw Error();
                     }
 
-                    let returnValue = query.call(this.bindingContext, data.q, data.page || 1);
+                    const returnValue = query.call(this.bindingContext, data.q, data.page || 1);
     
                     Promise.resolve(returnValue)
                         .then((result: LookupObjectResult | Select2Item[]) => {
@@ -101,6 +104,10 @@ export class Select2SelectCustomElement {
 
     selectedChanged() {
         $(this.element).val(this.selected).trigger('change');
+    }
+
+    disabledChanged() {
+        $(this.element).prop("disabled", this.disabled);
     }
 }
 

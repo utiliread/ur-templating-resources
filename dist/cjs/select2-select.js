@@ -87,6 +87,9 @@ var Select2SelectCustomElement = /** @class */ (function () {
     Select2SelectCustomElement.prototype.selectedChanged = function () {
         jquery_1.default(this.element).val(this.selected).trigger('change');
     };
+    Select2SelectCustomElement.prototype.disabledChanged = function () {
+        jquery_1.default(this.element).prop("disabled", this.disabled);
+    };
     __decorate([
         aurelia_framework_1.bindable(),
         __metadata("design:type", String)
@@ -107,6 +110,10 @@ var Select2SelectCustomElement = /** @class */ (function () {
         aurelia_framework_1.bindable(),
         __metadata("design:type", Object)
     ], Select2SelectCustomElement.prototype, "placeholder", void 0);
+    __decorate([
+        aurelia_framework_1.bindable(),
+        __metadata("design:type", Boolean)
+    ], Select2SelectCustomElement.prototype, "disabled", void 0);
     __decorate([
         aurelia_framework_1.bindable(),
         __metadata("design:type", Function)

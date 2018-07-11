@@ -7,6 +7,7 @@ export declare class Select2SelectCustomElement {
     items: Select2Item[];
     minimumInputLength: string | number;
     placeholder: string;
+    disabled: boolean;
     query?: (q: string) => Promise<{
         id: string;
         text: string;
@@ -19,4 +20,5 @@ export declare class Select2SelectCustomElement {
     attached(): void;
     detached(): void;
     selectedChanged(): void;
+    disabledChanged(): void;
 }
