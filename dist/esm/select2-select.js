@@ -11,7 +11,8 @@ import 'select2';
 import { bindable, bindingMode } from 'aurelia-framework';
 import $ from 'jquery';
 var Select2SelectCustomElement = /** @class */ (function () {
-    function Select2SelectCustomElement() {
+    function Select2SelectCustomElement(element) {
+        this.element = element;
         this.selected = [];
         this.items = [];
         this.minimumInputLength = 0;
@@ -64,7 +65,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
                 cache: true
             };
         }
-        $(this.element)
+        $(this.select2element)
             .select2(options)
             .val(this.selected).trigger('change')
             .on('change', function (event) {
@@ -76,17 +77,20 @@ var Select2SelectCustomElement = /** @class */ (function () {
             var notice = new Event('change', {
                 bubbles: false
             });
-            _this.element.dispatchEvent(notice);
+            _this.select2element.dispatchEvent(notice);
         });
+        if (this.element.attributes.getNamedItem('autofocus')) {
+            $(this.select2element).select2('open');
+        }
     };
     Select2SelectCustomElement.prototype.detached = function () {
-        $(this.element).select2('destroy');
+        $(this.select2element).select2('destroy');
     };
     Select2SelectCustomElement.prototype.selectedChanged = function () {
-        $(this.element).val(this.selected).trigger('change');
+        $(this.select2element).val(this.selected).trigger('change');
     };
     Select2SelectCustomElement.prototype.disabledChanged = function () {
-        $(this.element).prop("disabled", this.disabled);
+        $(this.select2element).prop("disabled", this.disabled);
     };
     __decorate([
         bindable(),

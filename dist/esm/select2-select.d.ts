@@ -1,6 +1,7 @@
 import 'select2';
 import { Select2Item } from './select2-item';
 export declare class Select2SelectCustomElement {
+    private element;
     private bindingContext;
     name?: string;
     selected: string[];
@@ -15,7 +16,8 @@ export declare class Select2SelectCustomElement {
         id: string;
         text: string;
     }[]>;
-    element: HTMLSelectElement;
+    select2element: HTMLSelectElement;
+    constructor(element: Element);
     bind(bindingContext: any): void;
     attached(): void;
     detached(): void;
