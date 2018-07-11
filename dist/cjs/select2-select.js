@@ -13,7 +13,8 @@ require("select2");
 var aurelia_framework_1 = require("aurelia-framework");
 var jquery_1 = require("jquery");
 var Select2SelectCustomElement = /** @class */ (function () {
-    function Select2SelectCustomElement() {
+    function Select2SelectCustomElement(element) {
+        this.element = element;
         this.selected = [];
         this.items = [];
         this.minimumInputLength = 0;
@@ -66,7 +67,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
                 cache: true
             };
         }
-        jquery_1.default(this.element)
+        jquery_1.default(this.select2element)
             .select2(options)
             .val(this.selected).trigger('change')
             .on('change', function (event) {
@@ -78,17 +79,20 @@ var Select2SelectCustomElement = /** @class */ (function () {
             var notice = new Event('change', {
                 bubbles: false
             });
-            _this.element.dispatchEvent(notice);
+            _this.select2element.dispatchEvent(notice);
         });
+        if (this.element.attributes.getNamedItem('autofocus')) {
+            jquery_1.default(this.select2element).select2('open');
+        }
     };
     Select2SelectCustomElement.prototype.detached = function () {
-        jquery_1.default(this.element).select2('destroy');
+        jquery_1.default(this.select2element).select2('destroy');
     };
     Select2SelectCustomElement.prototype.selectedChanged = function () {
-        jquery_1.default(this.element).val(this.selected).trigger('change');
+        jquery_1.default(this.select2element).val(this.selected).trigger('change');
     };
     Select2SelectCustomElement.prototype.disabledChanged = function () {
-        jquery_1.default(this.element).prop("disabled", this.disabled);
+        jquery_1.default(this.select2element).prop("disabled", this.disabled);
     };
     __decorate([
         aurelia_framework_1.bindable(),
