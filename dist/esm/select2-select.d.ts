@@ -1,7 +1,9 @@
 import 'select2';
+import { TaskQueue } from 'aurelia-framework';
 import { Select2Item } from './select2-item';
 export declare class Select2SelectCustomElement {
     private element;
+    private taskQueue;
     private bindingContext;
     name?: string;
     selected: string[];
@@ -17,7 +19,7 @@ export declare class Select2SelectCustomElement {
         text: string;
     }[]>;
     selectElement: HTMLSelectElement;
-    constructor(element: Element);
+    constructor(element: Element, taskQueue: TaskQueue);
     bind(bindingContext: any): void;
     attached(): void;
     detached(): void;

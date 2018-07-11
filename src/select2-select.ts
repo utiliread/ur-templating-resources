@@ -1,6 +1,6 @@
 import 'select2';
 
-import { autoinject, bindable, bindingMode } from 'aurelia-framework';
+import { TaskQueue, autoinject, bindable, bindingMode } from 'aurelia-framework';
 
 import $ from 'jquery';
 import { Options } from 'select2';
@@ -28,7 +28,7 @@ export class Select2SelectCustomElement {
 
     selectElement!: HTMLSelectElement;
 
-    constructor(private element: Element) {
+    constructor(private element: Element, private taskQueue: TaskQueue) {
     }
 
     bind(bindingContext: any) {
@@ -102,7 +102,8 @@ export class Select2SelectCustomElement {
             });
         
         if (this.element.attributes.getNamedItem('autofocus')) {
-            $(this.selectElement).select2('open');
+            // Queue the open until after the control is displayed to ensure that it opens below the select control
+            this.taskQueue.queueTask(() => $(this.selectElement).select2('open'));
         }
     }
 

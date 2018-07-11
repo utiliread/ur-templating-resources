@@ -13,8 +13,9 @@ require("select2");
 var aurelia_framework_1 = require("aurelia-framework");
 var jquery_1 = require("jquery");
 var Select2SelectCustomElement = /** @class */ (function () {
-    function Select2SelectCustomElement(element) {
+    function Select2SelectCustomElement(element, taskQueue) {
         this.element = element;
+        this.taskQueue = taskQueue;
         this.selected = [];
         this.items = [];
         this.minimumInputLength = 0;
@@ -82,7 +83,8 @@ var Select2SelectCustomElement = /** @class */ (function () {
             _this.selectElement.dispatchEvent(notice);
         });
         if (this.element.attributes.getNamedItem('autofocus')) {
-            jquery_1.default(this.selectElement).select2('open');
+            // Queue the open until after the control is displayed to ensure that it opens below the select control
+            this.taskQueue.queueTask(function () { return jquery_1.default(_this.selectElement).select2('open'); });
         }
     };
     Select2SelectCustomElement.prototype.detached = function () {
@@ -124,7 +126,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
     ], Select2SelectCustomElement.prototype, "query", void 0);
     Select2SelectCustomElement = __decorate([
         aurelia_framework_1.autoinject(),
-        __metadata("design:paramtypes", [Element])
+        __metadata("design:paramtypes", [Element, aurelia_framework_1.TaskQueue])
     ], Select2SelectCustomElement);
     return Select2SelectCustomElement;
 }());

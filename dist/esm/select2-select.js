@@ -8,11 +8,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import 'select2';
-import { autoinject, bindable, bindingMode } from 'aurelia-framework';
+import { TaskQueue, autoinject, bindable, bindingMode } from 'aurelia-framework';
 import $ from 'jquery';
 var Select2SelectCustomElement = /** @class */ (function () {
-    function Select2SelectCustomElement(element) {
+    function Select2SelectCustomElement(element, taskQueue) {
         this.element = element;
+        this.taskQueue = taskQueue;
         this.selected = [];
         this.items = [];
         this.minimumInputLength = 0;
@@ -80,7 +81,8 @@ var Select2SelectCustomElement = /** @class */ (function () {
             _this.selectElement.dispatchEvent(notice);
         });
         if (this.element.attributes.getNamedItem('autofocus')) {
-            $(this.selectElement).select2('open');
+            // Queue the open until after the control is displayed to ensure that it opens below the select control
+            this.taskQueue.queueTask(function () { return $(_this.selectElement).select2('open'); });
         }
     };
     Select2SelectCustomElement.prototype.detached = function () {
@@ -122,7 +124,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
     ], Select2SelectCustomElement.prototype, "query", void 0);
     Select2SelectCustomElement = __decorate([
         autoinject(),
-        __metadata("design:paramtypes", [Element])
+        __metadata("design:paramtypes", [Element, TaskQueue])
     ], Select2SelectCustomElement);
     return Select2SelectCustomElement;
 }());
