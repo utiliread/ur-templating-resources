@@ -69,6 +69,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
         $(this.selectElement)
             .select2(options)
             .val(this.selected).trigger('change')
+            .prop("disabled", this.disabled)
             .on('change', function (event) {
             // Don't propagate endlessly
             if (event.originalEvent) {
