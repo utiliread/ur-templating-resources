@@ -25,6 +25,6 @@ export class DatetimeLocalValueConverter {
     fromView(value: string, resolution: Resolution) {
         resolution = resolution || defaultResolution;
 
-        return DateTime.fromISO(value).startOf(resolution);
+        return DateTime.fromISO(value).startOf(resolution).toUTC();
     }
 }
