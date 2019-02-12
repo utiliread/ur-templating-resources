@@ -15,9 +15,8 @@ export class DatetimeLocalValueConverter {
         resolution = resolution || defaultResolution;
 
         if (value && value.isValid) {
-            let truncateLength = truncateLengths[resolution];
-
-            let result = value.toLocal().toISO().substr(0, truncateLength);
+            const truncateLength = truncateLengths[resolution];
+            const result = value.toLocal().toISO().substr(0, truncateLength);
 
             return resolution === 'hour' ? result + ':00' : result;
         }
@@ -26,6 +25,12 @@ export class DatetimeLocalValueConverter {
     fromView(value: string, resolution: Resolution) {
         resolution = resolution || defaultResolution;
 
-        return DateTime.fromISO(value).toUTC();
+        const local = DateTime.fromISO(value);
+
+        if (+local !== +local.startOf(resolution)) {
+            return DateTime.invalid("The value does not satisfy the resolution");
+        }
+
+        return local.toUTC();
     }
 }
