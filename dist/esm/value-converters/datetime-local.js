@@ -18,7 +18,7 @@ var DatetimeLocalValueConverter = /** @class */ (function () {
     };
     DatetimeLocalValueConverter.prototype.fromView = function (value, resolution) {
         resolution = resolution || defaultResolution;
-        return DateTime.fromISO(value).startOf(resolution).toUTC();
+        return DateTime.fromISO(value, { setZone: true }).startOf(resolution).toUTC();
     };
     return DatetimeLocalValueConverter;
 }());
