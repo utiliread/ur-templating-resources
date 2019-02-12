@@ -25,12 +25,6 @@ export class DatetimeLocalValueConverter {
     fromView(value: string, resolution: Resolution) {
         resolution = resolution || defaultResolution;
 
-        const local = DateTime.fromISO(value);
-
-        if (+local !== +local.startOf(resolution)) {
-            return DateTime.invalid("The value does not satisfy the resolution");
-        }
-
-        return local.toUTC();
+        return DateTime.fromISO(value).startOf(resolution);
     }
 }
