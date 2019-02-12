@@ -20,7 +20,11 @@ var DatetimeLocalValueConverter = /** @class */ (function () {
     };
     DatetimeLocalValueConverter.prototype.fromView = function (value, resolution) {
         resolution = resolution || defaultResolution;
-        return luxon_1.DateTime.fromISO(value).toUTC();
+        var local = luxon_1.DateTime.fromISO(value);
+        if (+local !== +local.startOf(resolution)) {
+            return luxon_1.DateTime.invalid("The value does not satisfy the resolution");
+        }
+        return local.toUTC();
     };
     return DatetimeLocalValueConverter;
 }());
