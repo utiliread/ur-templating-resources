@@ -11,7 +11,8 @@ export declare class Select2SelectCustomElement {
     minimumInputLength: string | number;
     placeholder: string;
     disabled: boolean;
-    query?: (q: string) => Promise<{
+    theme: string;
+    query?: (q: string, pageNumber?: number) => Promise<{
         id: string;
         text: string;
     }[] | {

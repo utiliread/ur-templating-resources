@@ -18,6 +18,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
         this.items = [];
         this.minimumInputLength = 0;
         this.placeholder = '';
+        this.theme = "default";
     }
     Select2SelectCustomElement.prototype.bind = function (bindingContext) {
         this.bindingContext = bindingContext;
@@ -25,7 +26,8 @@ var Select2SelectCustomElement = /** @class */ (function () {
     Select2SelectCustomElement.prototype.attached = function () {
         var _this = this;
         var options = {
-            minimumInputLength: parseInt(this.minimumInputLength.toString())
+            minimumInputLength: Number(this.minimumInputLength),
+            theme: this.theme
         };
         if (this.query) {
             var query_1 = this.query;
@@ -35,8 +37,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
                     if (!success || !failure) {
                         throw Error();
                     }
-                    var returnValue = query_1.call(_this.bindingContext, data.q, data.page || 1);
-                    Promise.resolve(returnValue)
+                    Promise.resolve(query_1.call(_this.bindingContext, data.q, data.page || 1))
                         .then(function (result) {
                         if (Array.isArray(result)) {
                             success({
@@ -119,6 +120,10 @@ var Select2SelectCustomElement = /** @class */ (function () {
         bindable(),
         __metadata("design:type", Boolean)
     ], Select2SelectCustomElement.prototype, "disabled", void 0);
+    __decorate([
+        bindable(),
+        __metadata("design:type", Object)
+    ], Select2SelectCustomElement.prototype, "theme", void 0);
     __decorate([
         bindable(),
         __metadata("design:type", Function)

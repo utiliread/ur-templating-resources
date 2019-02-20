@@ -22,9 +22,11 @@ export class Select2SelectCustomElement {
     placeholder = '';
     @bindable()
     disabled: boolean;
+    @bindable()
+    theme = "default";
 
     @bindable()
-    query?: (q: string) => Promise<{ id: string; text: string }[] | { id: string; text: string }[]>;
+    query?: (q: string, pageNumber?: number) => Promise<{ id: string; text: string }[] | { id: string; text: string }[]>;
 
     selectElement!: HTMLSelectElement;
 
@@ -37,7 +39,8 @@ export class Select2SelectCustomElement {
 
     attached() {
         let options: Options<any, any> = {
-            minimumInputLength: parseInt(this.minimumInputLength.toString())
+            minimumInputLength: Number(this.minimumInputLength),
+            theme: this.theme
         };
 
         if (this.query) {
@@ -51,9 +54,7 @@ export class Select2SelectCustomElement {
                         throw Error();
                     }
 
-                    const returnValue = query.call(this.bindingContext, data.q, data.page || 1);
-    
-                    Promise.resolve(returnValue)
+                    Promise.resolve(query.call(this.bindingContext, data.q, data.page || 1))
                         .then((result: LookupObjectResult | Select2Item[]) => {
                             if (Array.isArray(result)) {
                                 success({
