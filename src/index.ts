@@ -18,6 +18,7 @@ export function configure(config: FrameworkConfiguration) {
         PLATFORM.moduleName('./value-converters/local-time'),
         PLATFORM.moduleName('./value-converters/lower'),
         PLATFORM.moduleName('./value-converters/message-address'),
+        PLATFORM.moduleName('./value-converters/number'),
         PLATFORM.moduleName('./value-converters/upper'),
         PLATFORM.moduleName('./button-option'),
         PLATFORM.moduleName('./button-select'),
