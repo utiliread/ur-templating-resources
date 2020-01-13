@@ -3,7 +3,10 @@ export class NumberValueConverter {
         return value;
     }
 
-    fromView(value: string) {
+    fromView(value: string, emptyValue: any = 0) {
+        if (value === "") {
+            return emptyValue;
+        }
         return Number(value);
     }
 }
