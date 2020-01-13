@@ -3,8 +3,8 @@ export class NumberValueConverter {
         return value;
     }
 
-    fromView(value: string, emptyValue: any = 0) {
-        if (value === "") {
+    fromView(value: string, emptyValue?: any) {
+        if (value === "" && arguments.length === 2) {
             return emptyValue;
         }
         return Number(value);

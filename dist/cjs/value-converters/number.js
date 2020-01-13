@@ -7,8 +7,7 @@ var NumberValueConverter = /** @class */ (function () {
         return value;
     };
     NumberValueConverter.prototype.fromView = function (value, emptyValue) {
-        if (emptyValue === void 0) { emptyValue = 0; }
-        if (value === "") {
+        if (value === "" && arguments.length === 2) {
             return emptyValue;
         }
         return Number(value);
