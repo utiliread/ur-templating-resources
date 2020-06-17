@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MessageAddressValueConverter = void 0;
 var regex = new RegExp(/([^<]*)(<(.*)>)?/);
 var MessageAddressValueConverter = /** @class */ (function () {
     function MessageAddressValueConverter() {

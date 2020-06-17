@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LocalFormatValueConverter = void 0;
 var LocalFormatValueConverter = /** @class */ (function () {
     function LocalFormatValueConverter() {
     }

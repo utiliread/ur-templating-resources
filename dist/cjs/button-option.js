@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ButtonOptionCustomElement = void 0;
 var aurelia_framework_1 = require("aurelia-framework");
 var button_select_1 = require("./button-select");
 var ButtonOptionCustomElement = /** @class */ (function () {
@@ -19,7 +20,7 @@ var ButtonOptionCustomElement = /** @class */ (function () {
         get: function () {
             return this.value === this.parent.value;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ButtonOptionCustomElement.prototype.select = function () {

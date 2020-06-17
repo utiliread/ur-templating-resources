@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LowerValueConverter = void 0;
 var LowerValueConverter = /** @class */ (function () {
     function LowerValueConverter() {
     }

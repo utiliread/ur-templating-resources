@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CasualTimeAgoValueConverter = void 0;
 var ur_humanize_1 = require("ur-humanize");
 var CasualTimeAgoValueConverter = /** @class */ (function () {
     function CasualTimeAgoValueConverter() {

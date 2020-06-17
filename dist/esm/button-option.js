@@ -17,7 +17,7 @@ var ButtonOptionCustomElement = /** @class */ (function () {
         get: function () {
             return this.value === this.parent.value;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ButtonOptionCustomElement.prototype.select = function () {

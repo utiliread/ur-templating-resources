@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.HexValueConverter = void 0;
 var HexValueConverter = /** @class */ (function () {
     function HexValueConverter() {
     }

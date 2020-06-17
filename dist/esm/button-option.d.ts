@@ -3,7 +3,7 @@ export declare class ButtonOptionCustomElement {
     private parent;
     value: any;
     btnClass?: string;
-    readonly isActive: boolean;
+    get isActive(): boolean;
     constructor(parent: ButtonSelectCustomElement);
     select(): void;
 }
