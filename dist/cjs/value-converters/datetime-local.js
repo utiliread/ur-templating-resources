@@ -19,15 +19,9 @@ var DatetimeLocalValueConverter = /** @class */ (function () {
             return resolution === 'hour' ? result + ':00' : result;
         }
     };
-    DatetimeLocalValueConverter.prototype.fromView = function (value, resolution, exact) {
+    DatetimeLocalValueConverter.prototype.fromView = function (value, resolution) {
         resolution = resolution !== null && resolution !== void 0 ? resolution : defaultResolution;
-        var result = luxon_1.DateTime.fromISO(value, { setZone: true }).startOf(resolution).toUTC();
-        if (!exact && result.year < 100) {
-            var currentYear = luxon_1.DateTime.local().year;
-            var nearestCentury = Math.round(currentYear / 100) * 100;
-            result = result.plus({ years: nearestCentury });
-        }
-        return result;
+        return luxon_1.DateTime.fromISO(value, { setZone: true }).startOf(resolution).toUTC();
     };
     return DatetimeLocalValueConverter;
 }());

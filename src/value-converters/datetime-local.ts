@@ -22,17 +22,9 @@ export class DatetimeLocalValueConverter {
         }
     }
 
-    fromView(value: string, resolution?: Resolution, exact?: boolean) {
+    fromView(value: string, resolution?: Resolution) {
         resolution = resolution ?? defaultResolution;
 
-        let result = DateTime.fromISO(value, { setZone: true }).startOf(resolution).toUTC();
-
-        if (!exact && result.year < 100) {
-            const currentYear = DateTime.local().year;
-            const nearestCentury = Math.round(currentYear / 100) * 100;
-            result = result.plus({ years: nearestCentury });
-        }
-
-        return result;
+        return DateTime.fromISO(value, { setZone: true }).startOf(resolution).toUTC();
     }
 }
