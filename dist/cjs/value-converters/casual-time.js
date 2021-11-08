@@ -7,7 +7,7 @@ var CasualTimeValueConverter = /** @class */ (function () {
     }
     CasualTimeValueConverter.prototype.toView = function (value) {
         if (value && value.isValid) {
-            return ur_humanize_1.casualTime(value);
+            return (0, ur_humanize_1.casualTime)(value);
         }
     };
     return CasualTimeValueConverter;

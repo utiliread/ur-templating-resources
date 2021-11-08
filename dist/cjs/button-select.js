@@ -15,7 +15,7 @@ var ButtonSelectCustomElement = /** @class */ (function () {
     function ButtonSelectCustomElement() {
     }
     __decorate([
-        aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
+        (0, aurelia_framework_1.bindable)({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
         __metadata("design:type", Object)
     ], ButtonSelectCustomElement.prototype, "value", void 0);
     return ButtonSelectCustomElement;

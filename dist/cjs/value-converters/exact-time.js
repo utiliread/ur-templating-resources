@@ -7,7 +7,7 @@ var ExactTimeValueConverter = /** @class */ (function () {
     }
     ExactTimeValueConverter.prototype.toView = function (value, includeSeconds) {
         if (value && value.isValid) {
-            return ur_humanize_1.exactTime(value, includeSeconds);
+            return (0, ur_humanize_1.exactTime)(value, includeSeconds);
         }
     };
     return ExactTimeValueConverter;

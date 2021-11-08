@@ -7,7 +7,7 @@ var CasualRelativeTimeValueConverter = /** @class */ (function () {
     }
     CasualRelativeTimeValueConverter.prototype.toView = function (value, base) {
         if (value && value.isValid && (!base || base.isValid)) {
-            return ur_humanize_1.casualRelativeTime(value, base);
+            return (0, ur_humanize_1.casualRelativeTime)(value, base);
         }
     };
     return CasualRelativeTimeValueConverter;

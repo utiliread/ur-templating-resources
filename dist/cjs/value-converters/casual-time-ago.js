@@ -7,7 +7,7 @@ var CasualTimeAgoValueConverter = /** @class */ (function () {
     }
     CasualTimeAgoValueConverter.prototype.toView = function (value, base) {
         if (value && value.isValid && (!base || base.isValid)) {
-            return ur_humanize_1.casualTimeAgo(value, base);
+            return (0, ur_humanize_1.casualTimeAgo)(value, base);
         }
     };
     return CasualTimeAgoValueConverter;

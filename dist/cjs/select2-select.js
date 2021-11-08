@@ -70,7 +70,7 @@ var Select2SelectCustomElement = /** @class */ (function () {
                 cache: true
             };
         }
-        jquery_1.default(this.selectElement)
+        (0, jquery_1.default)(this.selectElement)
             .select2(options)
             .val(this.selected).trigger('change')
             .prop("disabled", this.disabled)
@@ -87,52 +87,52 @@ var Select2SelectCustomElement = /** @class */ (function () {
         });
         if (this.element.attributes.getNamedItem('autofocus')) {
             // Queue the open until after the control is displayed to ensure that it opens below the select control
-            this.taskQueue.queueTask(function () { return jquery_1.default(_this.selectElement).select2('open'); });
+            this.taskQueue.queueTask(function () { return (0, jquery_1.default)(_this.selectElement).select2('open'); });
         }
     };
     Select2SelectCustomElement.prototype.detached = function () {
-        jquery_1.default(this.selectElement).select2('destroy');
+        (0, jquery_1.default)(this.selectElement).select2('destroy');
     };
     Select2SelectCustomElement.prototype.selectedChanged = function () {
-        jquery_1.default(this.selectElement).val(this.selected).trigger('change');
+        (0, jquery_1.default)(this.selectElement).val(this.selected).trigger('change');
     };
     Select2SelectCustomElement.prototype.disabledChanged = function () {
-        jquery_1.default(this.selectElement).prop("disabled", this.disabled);
+        (0, jquery_1.default)(this.selectElement).prop("disabled", this.disabled);
     };
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", String)
     ], Select2SelectCustomElement.prototype, "name", void 0);
     __decorate([
-        aurelia_framework_1.bindable({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
+        (0, aurelia_framework_1.bindable)({ defaultBindingMode: aurelia_framework_1.bindingMode.twoWay }),
         __metadata("design:type", Array)
     ], Select2SelectCustomElement.prototype, "selected", void 0);
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", Array)
     ], Select2SelectCustomElement.prototype, "items", void 0);
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", Object)
     ], Select2SelectCustomElement.prototype, "minimumInputLength", void 0);
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", Object)
     ], Select2SelectCustomElement.prototype, "placeholder", void 0);
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", Boolean)
     ], Select2SelectCustomElement.prototype, "disabled", void 0);
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", Object)
     ], Select2SelectCustomElement.prototype, "theme", void 0);
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", Function)
     ], Select2SelectCustomElement.prototype, "query", void 0);
     Select2SelectCustomElement = __decorate([
-        aurelia_framework_1.autoinject(),
+        (0, aurelia_framework_1.autoinject)(),
         __metadata("design:paramtypes", [Element, aurelia_framework_1.TaskQueue])
     ], Select2SelectCustomElement);
     return Select2SelectCustomElement;

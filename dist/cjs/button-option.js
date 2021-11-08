@@ -27,20 +27,20 @@ var ButtonOptionCustomElement = /** @class */ (function () {
         this.parent.value = this.value;
     };
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", Object)
     ], ButtonOptionCustomElement.prototype, "value", void 0);
     __decorate([
-        aurelia_framework_1.bindable(),
+        (0, aurelia_framework_1.bindable)(),
         __metadata("design:type", String)
     ], ButtonOptionCustomElement.prototype, "btnClass", void 0);
     __decorate([
-        aurelia_framework_1.computedFrom('value', 'parent.value'),
+        (0, aurelia_framework_1.computedFrom)('value', 'parent.value'),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [])
     ], ButtonOptionCustomElement.prototype, "isActive", null);
     ButtonOptionCustomElement = __decorate([
-        aurelia_framework_1.autoinject(),
+        (0, aurelia_framework_1.autoinject)(),
         __metadata("design:paramtypes", [button_select_1.ButtonSelectCustomElement])
     ], ButtonOptionCustomElement);
     return ButtonOptionCustomElement;
