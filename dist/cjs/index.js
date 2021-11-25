@@ -17,7 +17,6 @@ function configure(config) {
         aurelia_framework_1.PLATFORM.moduleName('./value-converters/local-format'),
         aurelia_framework_1.PLATFORM.moduleName('./value-converters/local-time'),
         aurelia_framework_1.PLATFORM.moduleName('./value-converters/lower'),
-        aurelia_framework_1.PLATFORM.moduleName('./value-converters/message-address'),
         aurelia_framework_1.PLATFORM.moduleName('./value-converters/number'),
         aurelia_framework_1.PLATFORM.moduleName('./value-converters/upper'),
         aurelia_framework_1.PLATFORM.moduleName('./button-option'),
