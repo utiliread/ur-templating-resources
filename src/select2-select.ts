@@ -23,6 +23,8 @@ export class Select2SelectCustomElement {
     @bindable()
     disabled: boolean;
     @bindable()
+    autofocus: boolean;
+    @bindable()
     theme = "default";
 
     @bindable()
@@ -30,7 +32,7 @@ export class Select2SelectCustomElement {
 
     selectElement!: HTMLSelectElement;
 
-    constructor(private element: Element, private taskQueue: TaskQueue) {
+    constructor(private taskQueue: TaskQueue) {
     }
 
     bind(bindingContext: any) {
@@ -103,7 +105,7 @@ export class Select2SelectCustomElement {
                 this.selectElement.dispatchEvent(notice);
             });
         
-        if (this.element.attributes.getNamedItem('autofocus')) {
+        if (this.autofocus) {
             // Queue the open until after the control is displayed to ensure that it opens below the select control
             this.taskQueue.queueTask(() => $(this.selectElement).select2('open'));
         }
