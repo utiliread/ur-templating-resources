@@ -1,6 +1,6 @@
 {
   "name": "ur-templating-resources",
-  "version": "1.10.8",
+  "version": "1.10.9",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
