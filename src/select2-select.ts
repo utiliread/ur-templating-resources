@@ -145,7 +145,7 @@ export class Select2SelectCustomElement {
 
   itemsChanged() {
     this.itemsCollectionSubscription?.dispose();
-    $(this.selectElement).select2("data", this.items, true);
+    $(this.selectElement).trigger("change");
     this.itemsCollectionSubscription = this.bindingEngine
       .collectionObserver(this.items)
       .subscribe(this.itemsCollectionChanged);
