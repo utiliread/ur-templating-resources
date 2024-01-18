@@ -1,10 +1,9 @@
 import 'select2';
 
-import { TaskQueue, autoinject, bindable, bindingMode } from 'aurelia-framework';
+import { BindingEngine, Disposable, TaskQueue, autoinject, bindable, bindingMode } from 'aurelia-framework';
+import { DataFormat, Options } from 'select2';
 
 import $ from 'jquery';
-import { Options } from 'select2';
-import { Select2Item } from './select2-item';
 
 @autoinject()
 export class Select2SelectCustomElement {
@@ -15,7 +14,7 @@ export class Select2SelectCustomElement {
     @bindable({ defaultBindingMode: bindingMode.twoWay })
     selected: string[] = [];
     @bindable()
-    items: Select2Item[] = [];
+    items: DataFormat[] = [];
     @bindable()
     minimumInputLength: string | number = 0;
     @bindable()
@@ -31,21 +30,30 @@ export class Select2SelectCustomElement {
     query?: (q: string, pageNumber?: number) => Promise<{ id: string; text: string }[] | { id: string; text: string }[]>;
 
     selectElement!: HTMLSelectElement;
+    private itemsCollectionSubscription?: Disposable;
 
-    constructor(private taskQueue: TaskQueue) {
+    constructor(private taskQueue: TaskQueue, private bindingEngine: BindingEngine) {
+        this.itemsCollectionChanged = this.itemsCollectionChanged.bind(this);
     }
 
     bind(bindingContext: any) {
         this.bindingContext = bindingContext;
+
+        if (this.items) {
+            this.itemsCollectionSubscription = this.bindingEngine.collectionObserver(this.items).subscribe(this.itemsCollectionChanged);
+        }
     }
 
     attached() {
-        let options: Options<any, any> = {
+        const options: Options<any, any> = {
             minimumInputLength: Number(this.minimumInputLength),
             theme: this.theme
         };
 
-        if (this.query) {
+        if (this.items) {
+            options.data = this.items;
+        }
+        else if (this.query) {
             const query = this.query;
             
             options.ajax = {
@@ -57,7 +65,7 @@ export class Select2SelectCustomElement {
                     }
 
                     Promise.resolve(query.call(this.bindingContext, data.q, data.page || 1))
-                        .then((result: LookupObjectResult | Select2Item[]) => {
+                        .then((result: LookupObjectResult | DataFormat[]) => {
                             if (Array.isArray(result)) {
                                 success({
                                     results: result
@@ -113,6 +121,15 @@ export class Select2SelectCustomElement {
 
     detached() {
         $(this.selectElement).select2('destroy');
+
+        if (this.itemsCollectionSubscription) {
+            this.itemsCollectionSubscription.dispose();
+            this.itemsCollectionSubscription = undefined;
+        }
+    }
+
+    itemsCollectionChanged() {
+        $(this.selectElement).trigger('change');
     }
 
     selectedChanged() {
@@ -125,6 +142,6 @@ export class Select2SelectCustomElement {
 }
 
 interface LookupObjectResult {
-    items: Select2Item[];
+    items: DataFormat[];
     more: boolean;
 }

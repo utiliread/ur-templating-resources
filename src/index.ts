@@ -1,6 +1,6 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
-import { Select2Item } from './select2-item';
+import { DataFormat } from "select2";
 
 export function configure(config: FrameworkConfiguration) {
     config.globalResources([
@@ -26,5 +26,5 @@ export function configure(config: FrameworkConfiguration) {
 }
 
 export {
-    Select2Item
+    DataFormat as Select2Item
 };
