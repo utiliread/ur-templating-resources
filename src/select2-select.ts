@@ -19,7 +19,7 @@ export class Select2SelectCustomElement {
   @bindable()
   name?: string;
   @bindable({ defaultBindingMode: bindingMode.twoWay })
-  selected: string[] = [];
+  selected: string = null;
   @bindable()
   items: DataFormat[] = [];
   @bindable()
@@ -145,7 +145,22 @@ export class Select2SelectCustomElement {
 
   itemsChanged() {
     this.itemsCollectionSubscription?.dispose();
-    $(this.selectElement).trigger("change");
+
+    // select2 adds a data-select2-id attribute to the selected option,
+    // and this data attribute needs to be specifically cleared, as the
+    // aurelia repeater does not remove the data attribute.
+    // There seems to be two ways to achieve this
+
+    // 1. (sounds bad, but it does exactly the job)
+    // See. https://github.com/select2/select2/blob/master/src/js/select2/data/select.js#L121-L127
+    // $(this.selectElement).data("select2").dataAdapter.destroy();
+
+    // 2.
+    $(this.selectElement).children("option").each((_, option) => {
+      // Remove the data-select2-id attribute
+      delete option.dataset.select2Id;
+    });
+
     this.itemsCollectionSubscription = this.bindingEngine
       .collectionObserver(this.items)
       .subscribe(this.itemsCollectionChanged);
