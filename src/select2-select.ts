@@ -14,14 +14,12 @@ import $ from "jquery";
 
 @autoinject()
 export class Select2SelectCustomElement {
-  private bindingContext: any;
-
   @bindable()
   name?: string;
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   selected: string = null;
   @bindable()
-  items: DataFormat[] = [];
+  items?: DataFormat[];
   @bindable()
   minimumInputLength: string | number = 0;
   @bindable()
@@ -34,10 +32,10 @@ export class Select2SelectCustomElement {
   theme = "default";
 
   @bindable()
-  query?: (
-    q: string,
-    pageNumber?: number
-  ) => Promise<{ id: string; text: string }[] | { id: string; text: string }[]>;
+  queryFn?: (data: {
+    $query: string;
+    $pageNumber?: number;
+  }) => Promise<DataFormat[]> | DataFormat[];
 
   selectElement!: HTMLSelectElement;
   private itemsCollectionSubscription?: Disposable;
@@ -49,9 +47,7 @@ export class Select2SelectCustomElement {
     this.itemsCollectionChanged = this.itemsCollectionChanged.bind(this);
   }
 
-  bind(bindingContext: any) {
-    this.bindingContext = bindingContext;
-
+  bind() {
     if (this.items) {
       this.itemsCollectionSubscription = this.bindingEngine
         .collectionObserver(this.items)
@@ -67,8 +63,8 @@ export class Select2SelectCustomElement {
 
     if (this.items) {
       options.data = this.items;
-    } else if (this.query) {
-      const query = this.query;
+    } else if (this.queryFn) {
+      const queryFn = this.queryFn;
 
       options.ajax = {
         transport: (settings, success, failure) => {
@@ -78,9 +74,7 @@ export class Select2SelectCustomElement {
             throw Error();
           }
 
-          Promise.resolve(
-            query.call(this.bindingContext, data.q, data.page || 1)
-          )
+          Promise.resolve(queryFn({ $query: data.q, $pageNumber: data.page || 1 }))
             .then((result: LookupObjectResult | DataFormat[]) => {
               if (Array.isArray(result)) {
                 success({
@@ -156,10 +150,12 @@ export class Select2SelectCustomElement {
     // $(this.selectElement).data("select2").dataAdapter.destroy();
 
     // 2.
-    $(this.selectElement).children("option").each((_, option) => {
-      // Remove the data-select2-id attribute
-      delete option.dataset.select2Id;
-    });
+    $(this.selectElement)
+      .children("option")
+      .each((_, option) => {
+        // Remove the data-select2-id attribute
+        delete option.dataset.select2Id;
+      });
 
     this.itemsCollectionSubscription = this.bindingEngine
       .collectionObserver(this.items)
