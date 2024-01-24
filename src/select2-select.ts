@@ -56,14 +56,86 @@ export class Select2SelectCustomElement {
   }
 
   attached() {
+    this.initSelect();
+
+    if (this.autofocus) {
+      // Queue the open until after the control is displayed to ensure that it opens below the select control
+      this.taskQueue.queueTask(() => $(this.selectElement).select2("open"));
+    }
+  }
+
+  detached() {
+    $(this.selectElement).select2("destroy");
+
+    if (this.itemsCollectionSubscription) {
+      this.itemsCollectionSubscription.dispose();
+      this.itemsCollectionSubscription = undefined;
+    }
+  }
+
+  itemsChanged() {
+    this.itemsCollectionSubscription?.dispose();
+
+    // https://github.com/select2/select2/issues/2830#issuecomment-87647138
+
+    // select2 adds a data-select2-id attribute to the selected option,
+    // and this data attribute needs to be specifically cleared, as the
+    // aurelia repeater does not remove the data attribute.
+    // There seems to be three ways to achieve this
+
+    // 1. (sounds bad, but it does exactly the job)
+    // See. https://github.com/select2/select2/blob/master/src/js/select2/data/select.js#L121-L127
+    // $(this.selectElement).data("select2").dataAdapter.destroy();
+
+    // 2.
+    // $(this.selectElement).select2("destroy");
+    // this.initSelect();
+
+    // 3.
+    $(this.selectElement)
+      .children("option")
+      .each((_, option) => {
+        // Remove the data-select2-id attribute
+        delete option.dataset.select2Id;
+      });
+    this.scheduleRefresh();
+
+    this.itemsCollectionSubscription = this.bindingEngine
+      .collectionObserver(this.items)
+      .subscribe(this.itemsCollectionChanged);
+  }
+
+  itemsCollectionChanged() {
+    this.scheduleRefresh();
+  }
+
+  selectedChanged() {
+    this.scheduleRefresh();
+  }
+
+  disabledChanged() {
+    $(this.selectElement).prop("disabled", this.disabled);
+  }
+
+  private scheduled = false;
+  private scheduleRefresh() {
+    if (this.scheduled) {
+      return;
+    }
+    this.scheduled = true;
+    this.taskQueue.queueTask(() => {
+      $(this.selectElement).val(this.selected).trigger("change");
+      this.scheduled = false;
+    });
+  }
+
+  private initSelect() {
     const options: Options<any, any> = {
       minimumInputLength: Number(this.minimumInputLength),
       theme: this.theme,
     };
 
-    if (this.items) {
-      options.data = this.items;
-    } else if (this.queryFn) {
+    if (this.queryFn) {
       const queryFn = this.queryFn;
 
       options.ajax = {
@@ -74,7 +146,9 @@ export class Select2SelectCustomElement {
             throw Error();
           }
 
-          Promise.resolve(queryFn({ $query: data.q, $pageNumber: data.page || 1 }))
+          Promise.resolve(
+            queryFn({ $query: data.q, $pageNumber: data.page || 1 })
+          )
             .then((result: LookupObjectResult | DataFormat[]) => {
               if (Array.isArray(result)) {
                 success({
@@ -115,63 +189,15 @@ export class Select2SelectCustomElement {
           return;
         }
 
+        const value = $(this.selectElement).val();
+        this.selected = value as string;
+
         // Dispatch to raw select within the custom element.
         const notice = new Event("change", {
           bubbles: false,
         });
         this.selectElement.dispatchEvent(notice);
       });
-
-    if (this.autofocus) {
-      // Queue the open until after the control is displayed to ensure that it opens below the select control
-      this.taskQueue.queueTask(() => $(this.selectElement).select2("open"));
-    }
-  }
-
-  detached() {
-    $(this.selectElement).select2("destroy");
-
-    if (this.itemsCollectionSubscription) {
-      this.itemsCollectionSubscription.dispose();
-      this.itemsCollectionSubscription = undefined;
-    }
-  }
-
-  itemsChanged() {
-    this.itemsCollectionSubscription?.dispose();
-
-    // select2 adds a data-select2-id attribute to the selected option,
-    // and this data attribute needs to be specifically cleared, as the
-    // aurelia repeater does not remove the data attribute.
-    // There seems to be two ways to achieve this
-
-    // 1. (sounds bad, but it does exactly the job)
-    // See. https://github.com/select2/select2/blob/master/src/js/select2/data/select.js#L121-L127
-    // $(this.selectElement).data("select2").dataAdapter.destroy();
-
-    // 2.
-    $(this.selectElement)
-      .children("option")
-      .each((_, option) => {
-        // Remove the data-select2-id attribute
-        delete option.dataset.select2Id;
-      });
-
-    this.itemsCollectionSubscription = this.bindingEngine
-      .collectionObserver(this.items)
-      .subscribe(this.itemsCollectionChanged);
-  }
-
-  itemsCollectionChanged() {
-    $(this.selectElement).trigger("change");
-  }
-
-  selectedChanged() {
-    $(this.selectElement).val(this.selected).trigger("change");
-  }
-
-  disabledChanged() {
-    $(this.selectElement).prop("disabled", this.disabled);
   }
 }
 
