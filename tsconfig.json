@@ -1,17 +1,17 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "declaration": true,
-        "sourceMap": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "strictNullChecks": false,
-        "rootDir": "src",
-        "outDir": "dist/esm",
-        "lib": [ "esnext", "dom" ]
-    }
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "rootDir": "src",
+    "outDir": "dist/esm",
+    "lib": ["esnext", "dom"]
+  }
 }

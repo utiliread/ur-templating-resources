@@ -42,7 +42,7 @@ export class Select2SelectCustomElement {
 
   constructor(
     private taskQueue: TaskQueue,
-    private bindingEngine: BindingEngine
+    private bindingEngine: BindingEngine,
   ) {
     this.itemsCollectionChanged = this.itemsCollectionChanged.bind(this);
   }
@@ -147,7 +147,7 @@ export class Select2SelectCustomElement {
           }
 
           Promise.resolve(
-            queryFn({ $query: data.q, $pageNumber: data.page || 1 })
+            queryFn({ $query: data.q, $pageNumber: data.page || 1 }),
           )
             .then((result: LookupObjectResult | DataFormat[]) => {
               if (Array.isArray(result)) {

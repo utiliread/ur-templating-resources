@@ -1,24 +1,23 @@
-import { autoinject, bindable, computedFrom } from 'aurelia-framework';
+import { autoinject, bindable, computedFrom } from "aurelia-framework";
 
-import { ButtonSelectCustomElement } from './button-select';
+import { ButtonSelectCustomElement } from "./button-select";
 
 @autoinject()
 export class ButtonOptionCustomElement {
-    @bindable()
-    value: any;
+  @bindable()
+  value: any;
 
-    @bindable()
-    btnClass?: string;
+  @bindable()
+  btnClass?: string;
 
-    @computedFrom('value', 'parent.value')
-    get isActive() {
-        return this.value === this.parent.value;
-    }
+  @computedFrom("value", "parent.value")
+  get isActive() {
+    return this.value === this.parent.value;
+  }
 
-    constructor(private parent: ButtonSelectCustomElement) {
-    }
+  constructor(private parent: ButtonSelectCustomElement) {}
 
-    select() {
-        this.parent.value = this.value;
-    }
+  select() {
+    this.parent.value = this.value;
+  }
 }
