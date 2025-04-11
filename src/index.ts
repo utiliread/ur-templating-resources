@@ -4,6 +4,7 @@ import { DataFormat } from "select2";
 
 export function configure(config: FrameworkConfiguration) {
     config.globalResources([
+        PLATFORM.moduleName('./binding-behaviors/casual-time-ago'),
         PLATFORM.moduleName('./value-converters/casual-relative-time'),
         PLATFORM.moduleName('./value-converters/casual-time-ago'),
         PLATFORM.moduleName('./value-converters/casual-time'),
