@@ -1,5 +1,17 @@
 <template>
-    <select ref="selectElement" class="form-control" name.bind="name" value.two-way="selected" data-placeholder.one-way="placeholder">
-        <option repeat.for="item of items" value.bind="item.id">${item.text}</option>
-    </select>
+  <select
+    ref="selectElement"
+    class="form-control"
+    name.bind="name"
+    value.two-way="selected"
+    data-placeholder.one-way="placeholder"
+  >
+    <option
+      repeat.for="item of items"
+      value.bind="item.id"
+      disabled.bind="item.disabled"
+    >
+      ${item.text}
+    </option>
+  </select>
 </template>
